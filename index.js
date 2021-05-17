@@ -8,9 +8,25 @@ var _data = require("./lib/data");
 
 //testing
 // @todo delete this
-_data.create("test", "newFile", { foo: "bar" }, function (err) {
-  console.log("err", err);
-});
+//create
+// _data.create("test", "newFile", { foo: "bar" }, function (err) {
+//   console.log("err", err);
+// });
+
+//read
+// _data.read("test", "newFile", function (err, data) {
+//   console.log("err", err, data);
+// });
+
+//update
+// _data.update("test", "newFile", { fizz: "buzz" }, function (err, data) {
+//   console.log("err", err);
+// });
+
+//delete
+// _data.delete("test", "newFile", function (err) {
+//   console.log("err", err);
+// });
 
 const httpServer = http.createServer(function (req, res) {
   unifiedServer(req, res);
