@@ -2,9 +2,9 @@ const http = require("http");
 const https = require("https");
 const url = require("url");
 var StringDecoder = require("string_decoder").StringDecoder;
-var config = require("./config");
+var config = require("./lib/config");
 var fs = require("fs");
-var _data = require("./lib/data");
+var handlers = require("./lib/handlers");
 
 //testing
 // @todo delete this
@@ -90,7 +90,7 @@ var unifiedServer = function (req, res) {
       queryStringObject: queryStringObject,
       method: method,
       headers: headers,
-      payload: buffer,
+      payload: helpers.parseJsonToObject(buffer),
     };
 
     chosenHandler(data, function (statusCode, payload) {
@@ -107,16 +107,7 @@ var unifiedServer = function (req, res) {
   });
 };
 
-var handlers = {};
-
-handlers.hello = function (data, callback) {
-  callback(200, { welcome: "Welcome to Pirple" });
-};
-
-handlers.notFound = function (data, callback) {
-  callback(404);
-};
-
 var router = {
   hello: handlers.hello,
+  user: handlers.user,
 };
